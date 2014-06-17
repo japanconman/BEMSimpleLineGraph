@@ -16,7 +16,7 @@
     if (self) {
         // Initialization code
         self.backgroundColor = [UIColor clearColor];
-        _frameOffset = 0.0;
+        _frameOffset = CGPointZero;
     }
     return self;
 }
@@ -31,17 +31,33 @@
     referenceLinesPath.lineWidth = 0.7;
     
     if (self.enableRefrenceLines == YES) {
-        for (NSNumber *xNumber in self.arrayOfRefrenceLinePoints) {
-            CGPoint initialPoint = CGPointMake([xNumber floatValue], self.frame.size.height-self.frameOffset);
+        for (NSNumber *xNumber in self.arrayOfVerticalRefrenceLinePoints) {
+            CGPoint initialPoint = CGPointMake([xNumber floatValue], self.frame.size.height-self.frameOffset.y);
             CGPoint finalPoint = CGPointMake([xNumber floatValue], 0);
             
             [referenceLinesPath moveToPoint:initialPoint];
             [referenceLinesPath addLineToPoint:finalPoint];
         }
         
+        for (NSNumber *yNumber in self.arrayOfHorizontalReferenceLinePoints) {
+            CGPoint initialPoint = CGPointMake(0, [yNumber floatValue]);
+            CGPoint finalPoint = CGPointMake(self.frame.size.width ,[yNumber floatValue]);
+            
+            [referenceLinesPath moveToPoint:initialPoint];
+            [referenceLinesPath addLineToPoint:finalPoint];
+            
+        }
+        
         if (self.enableRefrenceFrame == YES) {
-            [referenceLinesPath moveToPoint:CGPointMake(0, self.frame.size.height-self.frameOffset)];
-            [referenceLinesPath addLineToPoint:CGPointMake(self.frame.size.width, self.frame.size.height-self.frameOffset)];
+            //Frame Y baseline
+            [referenceLinesPath moveToPoint:CGPointMake(self.frameOffset.x,0)];
+            [referenceLinesPath addLineToPoint:CGPointMake(self.frameOffset.x,
+                                                           self.frame.size.height-self.frameOffset.y)];
+            //Frame X baseline
+            [referenceLinesPath moveToPoint:CGPointMake(self.frameOffset.x,
+                                                        self.frame.size.height-self.frameOffset.y)];
+            [referenceLinesPath addLineToPoint:CGPointMake(self.frame.size.width,
+                                                           self.frame.size.height-self.frameOffset.y)];
         }
         
         [referenceLinesPath closePath];

@@ -54,7 +54,8 @@
     self.myGraph.enableTouchReport = YES;
     self.myGraph.enablePopUpReport = YES;
     self.myGraph.enableBezierCurve = YES;
-    self.myGraph.enableYAxisLabel = NO;
+    self.myGraph.enableYAxisLabel = YES;
+    self.myGraph.enableYAxisLabelOffset = YES;
     self.myGraph.alwaysDisplayDots = NO;
     self.myGraph.enableReferenceAxisLines = YES;
     self.myGraph.enableReferenceAxisFrame = YES;

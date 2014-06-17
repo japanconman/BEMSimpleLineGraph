@@ -9,14 +9,14 @@
 
 
 #if __has_feature(objc_modules)
-    // We recommend enabling Objective-C Modules in your project Build Settings for numerous benefits over regular #imports
-    @import Foundation;
-    @import UIKit;
-    @import CoreGraphics;
+// We recommend enabling Objective-C Modules in your project Build Settings for numerous benefits over regular #imports
+@import Foundation;
+@import UIKit;
+@import CoreGraphics;
 #else
-    #import <Foundation/Foundation.h>
-    #import <UIKit/UIKit.h>
-    #import <CoreGraphics/CoreGraphics.h>
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+#import <CoreGraphics/CoreGraphics.h>
 #endif
 
 
@@ -45,7 +45,8 @@
 
 @property (nonatomic) BOOL enableRefrenceLines;
 @property (nonatomic) BOOL enableRefrenceFrame;
-@property (nonatomic) NSArray *arrayOfRefrenceLinePoints;
+@property (nonatomic) NSArray *arrayOfVerticalRefrenceLinePoints;
+@property (nonatomic) NSArray *arrayOfHorizontalReferenceLinePoints;
 
 
 
@@ -95,7 +96,7 @@
 
 //----- FRAME -----//
 
-/// The offset dependant on the size of the labels to create the frame
-@property (nonatomic) CGFloat frameOffset;
+/// The offset dependant on the size of the X-Y labels to create the frame
+@property (nonatomic) CGPoint frameOffset;
 
 @end
